@@ -14,7 +14,7 @@ RUN ls -l target
 FROM openjdk:17.0.1-jdk-slim
 
 # Copy the JAR file from the Maven build stage to the final image
-COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar demo.jar
+COPY --from=build /target/POSsystem-0.0.1-SNAPSHOT.jar POSsystem.jar
 
 # Expose port 8080
 EXPOSE 8080
