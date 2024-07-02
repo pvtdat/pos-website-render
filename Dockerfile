@@ -20,4 +20,4 @@ COPY --from=build /target/POSsystem-0.0.1-SNAPSHOT.jar POSsystem.jar
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "demo.jar"]
+ENTRYPOINT ["java", "-jar", "POSsystem.jar"]
