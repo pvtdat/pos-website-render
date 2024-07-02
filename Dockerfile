@@ -7,6 +7,9 @@ COPY . .
 # Run Maven package command to build the application
 RUN mvn clean package -DskipTests
 
+# List the contents of the target directory to verify the JAR file
+RUN ls -l target
+
 # Use a slim version of OpenJDK to run the application
 FROM openjdk:17.0.1-jdk-slim
 
