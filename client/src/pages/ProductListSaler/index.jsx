@@ -76,7 +76,7 @@ function ProductListSaler() {
                         </div>
                         <div className="col-sm-12 col-md-12 col-lg-1">
                             <button onClick={refreshProducts} className="btn btn-sm bg-main text-main">
-                                <i class="fa-solid fa-rotate-right mr-1"></i>
+                                <i className="fa-solid fa-rotate-right mr-1"></i>
                                 Refresh
                             </button>
                         </div>

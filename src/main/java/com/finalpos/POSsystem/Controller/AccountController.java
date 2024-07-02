@@ -1,15 +1,11 @@
 package com.finalpos.POSsystem.Controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalpos.POSsystem.Config.FirebaseService;
 import com.finalpos.POSsystem.Model.UserRepository;
 import com.finalpos.POSsystem.Model.*;
 import com.finalpos.POSsystem.Model.Package;
-import com.mongodb.client.result.UpdateResult;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.security.Key;
 import java.util.Date;
 import java.util.Optional;
-import java.util.Properties;
-
-
-import static javax.crypto.Cipher.SECRET_KEY;
 
 @Controller
 @RestController
@@ -41,11 +30,9 @@ public class AccountController {
     private FirebaseService firebase;
     @Value("${default.application.avatar}")
     private String defaultAvatar;
-
     protected static Key JWT_Key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     @PostMapping("/register_admin")
-
     public Package register_admin(@RequestBody UserModel model) {
         try{
             model.setRole("Administrator");
@@ -119,6 +106,7 @@ public class AccountController {
         }
     }
 
+    // My code
     @GetMapping("/")
     public Package profile(@RequestHeader("Authorization") String token){
         try {
@@ -129,6 +117,7 @@ public class AccountController {
         }
     }
 
+    // My code
     @PatchMapping("/")
     public Package updateProfile(@RequestParam("name") String name,
                                  @RequestParam("file") Optional<MultipartFile> multipartFile,
@@ -234,5 +223,4 @@ public class AccountController {
             return false;
         }
     }
-
 }

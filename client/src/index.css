@@ -20,6 +20,9 @@
   --main-color-light: #ADC4CE;
   --sub-background: #f04cff;
   --main-color: #F1F0E8;
+  --pink-gradient: linear-gradient(to right, #ff7eb9, #ff65a3);
+  --blue-gradient: linear-gradient(to right, #1e3c72, #2a5298);
+  --border-animation: border-animation 2s infinite;
 }
 /* Firefox scrollbar */
 /* Note: You may need to use the Gecko engine prefix for Firefox, depending on the version. */
@@ -262,7 +265,7 @@ ul > li {
 }
 
 .border-main{
-  border: 1px solid F4CE14 !important;
+  border: 1px solid #F4CE14 !important;
 }
 /* Style for the container */
 .file-input-container {
@@ -293,7 +296,6 @@ ul > li {
   border-radius: 5px;
   cursor: pointer;
   display: inline-block;
-  cursor: pointer;
 }
 .file-button:hover{
   background-color: var(--sub-background); 

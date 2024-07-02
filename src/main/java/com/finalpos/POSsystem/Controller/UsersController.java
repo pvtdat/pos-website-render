@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
 
 import static com.finalpos.POSsystem.Controller.AccountController.JWT_Key;
 
-
 @Controller
 @RestController
 @ResponseBody
@@ -41,9 +40,8 @@ public class UsersController {
     private static final String EMAIL_REGEX =
             "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-
+    // My code
     @GetMapping("/")
-    //    Get list of users
     public Package index(@RequestParam Optional<String> page) {
         try {
             int pageSize = 10;
@@ -54,7 +52,6 @@ public class UsersController {
             int skipAmount = (pageNumber - 1) * pageSize;
             int totalUsers = (int) db.count();
             int totalPages = (int) Math.ceil((double) totalUsers / pageSize);
-
 
             List<UserModel> userList = db.findAll();
             List<UserModel> user = new ArrayList<>();
@@ -134,6 +131,7 @@ public class UsersController {
         }
     }
 
+    // My code
     @PutMapping("/{userId}")
     public Package update(@PathVariable("userId") String userId,
                           @RequestParam String email,
@@ -154,6 +152,7 @@ public class UsersController {
         }
     }
 
+    // My code
     @DeleteMapping("/{userId}")
     public Package delete(@PathVariable("userId") String userId){
         try {

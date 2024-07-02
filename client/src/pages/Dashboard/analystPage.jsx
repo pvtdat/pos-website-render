@@ -20,7 +20,6 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
     const [show, setShow] = useState(false);
     const chartRef = useRef(null);
 
-
     const handleStartDateChange = (e) => {
         setStartDate(e.target.value);
     };
@@ -118,10 +117,6 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
 
     }, [orders, ordersData, option, orderTotalPrice, numberOfOrders, numberOfProducts, totalProfit]);
 
-
-
-
-
     const updateChart = async () => {
         const data = await fetchData(startDate, endDate);
         if (data) {
@@ -200,7 +195,6 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
             setOption(selectedOption);
         }
     };
-    
 
     const fetchData = async (startDate, endDate) => {
         const url = "/api/orders-analyst/byDay";
@@ -233,9 +227,6 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
             console.error(error.message);
         }
     };
-    
-    
-    
 
     const updateChartWithData = () => {
         if (ordersData && ordersData.length > 0) {
@@ -259,12 +250,20 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
             }
         }
     };
-    
-    
-    
-    
-    
-    
+
+    const [sortOption, setSortOption] = useState("1");
+
+    // Ensure orders is defined and an array
+    const sortedOrders = orders ? [...orders].sort((a, b) => {
+        switch (sortOption) {
+            case "1": // Highest Price
+                return b.total - a.total;
+            case "2": // Lowest Price
+                return a.total - b.total;
+            default:
+                return 0;
+        }
+    }) : [];
 
     return (
     <div>
@@ -355,7 +354,7 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
                 </div>
             </div>
 
-            
+
         </div>
         <div className="row my-3">
             <div className="col-12 text-center">
@@ -386,16 +385,19 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-3">
                     <div className="form-group">
-                    <select className="form-control" id="exampleFormControlSelect1">
-                        <option value="1">a-z</option>
-                        <option value="2">z-a</option>
-                        <option value="3">Highest Price</option>
-                        <option value="4">Lowest Price</option>
-                    </select>
-                    <blockquote className="blockquote-footer">
-                        Sort by{' '}
-                        <i className="fa-solid fa-arrow-down-a-z"></i>
-                    </blockquote>
+                        <select
+                            className="form-control"
+                            id="exampleFormControlSelect1"
+                            value={sortOption}
+                            onChange={e => setSortOption(e.target.value)}
+                        >
+                            <option value="1">Highest Price</option>
+                            <option value="2">Lowest Price</option>
+                        </select>
+                        <blockquote className="blockquote-footer">
+                            Sort by{' '}
+                            <i className="fa-solid fa-arrow-down-a-z"></i>
+                        </blockquote>
                     </div>
                 </div>
                 <div className="col-sm-12 col-md-12 col-lg-1">
@@ -422,25 +424,18 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {ordersData &&
-                        ordersData
-                            .filter(
-                            (order) =>
-                                order.orderNumber &&
-                                order.orderNumber
-                                .toLowerCase()
-                                .includes(search.toLowerCase())
-                            )
+                    {
+                        sortedOrders
+                            .filter(order => order.orderNumber && order.orderNumber.toLowerCase().includes(search.toLowerCase()))
                             .map((order, index) => (
-                            <OrderItem key={index} index={index + 1} item={order} />
-                            ))}
+                                <OrderItem key={index} index={index + 1} item={order} />
+                    ))}
                     </tbody>
                     </table>
                 </div>
             </div>
             </div>
         </div>
-        
     </div>
     );
 }

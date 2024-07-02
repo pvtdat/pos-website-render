@@ -9,12 +9,9 @@ import EditModal from './FunctionModal/EditModal';
 import Pagination from '../../components/Pagination';
 
 function UserList() {
-
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const page = queryParams.get('page') || 1;
-
-
     const [users, setUsers] = useState(null);
     const [divider, setDivider] = useState(1);
     const [role, setRole] = useState("");
@@ -24,7 +21,6 @@ function UserList() {
     const [error, setError] = useState(null);
     useEffect(() => {
         fetchUsers();
-
     }, [role, search, status, location]);
 
     const fetchUsers = async () => {
@@ -124,12 +120,20 @@ function UserList() {
                                     <td colSpan={6}><LoadingImg /></td>
                                 </tr>}
                                 {loading && users && users
-                                    .filter(user => user.role.includes(role) && status == user.status || status == ""
-                                        && (user.name.toLowerCase().includes(search.toLowerCase())
-                                        || user.email.toLowerCase().includes(search.toLowerCase())))
+                                    .filter(user => {
+                                        const matchesRole = role ? user.role === role : true;
+                                        const matchesStatus = status ? user.status === status : true;
+                                        const matchesSearch = search ?
+                                            user.name.toLowerCase().includes(search.toLowerCase()) ||
+                                            user.email.toLowerCase().includes(search.toLowerCase()) : true;
+
+
+                                        return matchesRole && matchesStatus && matchesSearch;
+                                    })
                                     .map((user, index) => (
                                         <UserItem key={index} index={index + 1} user={user}/>
-                                    ))}
+                                    ))
+                                }
                                 </tbody>
                             </table>
                         </div>

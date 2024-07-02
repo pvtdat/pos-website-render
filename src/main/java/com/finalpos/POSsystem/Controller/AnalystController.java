@@ -4,7 +4,6 @@ package com.finalpos.POSsystem.Controller;
 import com.finalpos.POSsystem.Model.*;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -81,8 +80,8 @@ public class AnalystController {
                                   @RequestParam("endDate") String endDate,
                                   @RequestHeader("Authorization") String token) {
         try{
-            System.out.println("startDate: " + startDate);
-            System.out.println("endDate: " + endDate);
+//            System.out.println("startDate: " + startDate);
+//            System.out.println("endDate: " + endDate);
 
             Claims claims = Jwts.parser().setSigningKey(JWT_Key).parseClaimsJws(token).getBody();
             String username = claims.get("username", String.class);
@@ -126,7 +125,6 @@ public class AnalystController {
                     }
                 }
             }
-
 
             if(ordersDB == null){
                 return new Package(404, "No orders found", null);
@@ -180,17 +178,16 @@ public class AnalystController {
 
     private int calculateProfit(List<OrderModel> orders) {
         int profit = 0;
-
-        System.out.println("calculateProfit");
+//        System.out.println("calculateProfit");
         for (OrderModel order : orders) {
             OrderDetailModel orderDetail = orderDetailRepo.findByOrderNumber(order.getOrderNumber());
-            System.out.println("orderDetail");
+//            System.out.println("orderDetail");
             if (orderDetail == null) {
                 profit += order.getTotal();
             } else {
-                System.out.println("productCart");
+//                System.out.println("productCart");
                 for (ProductCartModel productCart : orderDetail.getProducts()){
-                    System.out.println("product");
+//                    System.out.println("product");
                    ProductModel product = productRepo.findByBarcode(productCart.getBarcode());
 
                    if (product != null) {
@@ -203,5 +200,4 @@ public class AnalystController {
 
         return profit;
     }
-
 }

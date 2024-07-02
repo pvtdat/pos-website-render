@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import static com.finalpos.POSsystem.Controller.AccountController.JWT_Key;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Controller
 @RestController
@@ -66,7 +65,8 @@ public class POSController {
         }
     }
 
-    @PostMapping("/create-a-bill") // Đạt
+    // My code
+    @PostMapping("/create-a-bill")
     private Package createABill(@RequestBody PaymentModel payment) {
         try {
             // Get data from RequestBody
@@ -145,9 +145,6 @@ public class POSController {
             orderDetailModel.setOrderNumber(orderModel.getOrderNumber());
             orderDetailModel.setProducts(productCartModels);
             ordDetailDb.save(orderDetailModel);
-
-
-
 
             return new Package(0, "Success", orderModel);
         } catch (Exception e) {

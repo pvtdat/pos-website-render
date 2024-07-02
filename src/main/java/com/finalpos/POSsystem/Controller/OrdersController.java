@@ -23,8 +23,8 @@ public class OrdersController {
     @Autowired
     OrderDetailModelRepository orderDetailDb;
 
-
-    @GetMapping("/{order_number}") // Đạt
+    // My code
+    @GetMapping("/{order_number}")
     private Package getOrderByOrderNumber(@PathVariable("order_number") String order_number){
         try {
             OrderModel orderDB = orderDb.findByOrderNumber(order_number);
@@ -53,7 +53,8 @@ public class OrdersController {
         }
     }
 
-    @GetMapping("/") // Đạt
+    // My code
+    @GetMapping("/")
     private Package getAllOrders(@RequestParam Optional<String> page){
         try {
             int pageSize = 10;

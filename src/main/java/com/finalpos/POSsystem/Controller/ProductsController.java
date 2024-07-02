@@ -3,7 +3,6 @@ package com.finalpos.POSsystem.Controller;
 import com.finalpos.POSsystem.Config.FirebaseService;
 import com.finalpos.POSsystem.Model.ProductModel;
 import com.finalpos.POSsystem.Model.ProductRepository;
-import com.finalpos.POSsystem.Model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,6 @@ import java.util.Optional;
 public class ProductsController {
     @Autowired
     private FirebaseService firebase;
-
     @Autowired
     ProductRepository db;
 
@@ -56,6 +54,7 @@ public class ProductsController {
         }
     }
 
+    // My code
     @PostMapping("/add")
     public Package add(@RequestParam("barcode") String barcode,
                        @RequestParam("name") String name,
@@ -168,6 +167,7 @@ public class ProductsController {
         }
     }
 
+    // My code
     @DeleteMapping("/{barcode}")
     public Package delete(@PathVariable("barcode") String barcode){
         try {

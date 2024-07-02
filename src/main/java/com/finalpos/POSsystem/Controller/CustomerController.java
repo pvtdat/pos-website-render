@@ -1,9 +1,7 @@
 package com.finalpos.POSsystem.Controller;
 import com.finalpos.POSsystem.Model.CustomerRepository;
-import com.finalpos.POSsystem.Config.FirebaseService;
 import com.finalpos.POSsystem.Model.*;
 import com.finalpos.POSsystem.Model.Package;
-import jakarta.persistence.criteria.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,8 @@ public class CustomerController {
     @Autowired
     OrderRepository ordDb;
 
-    @GetMapping("/")  // Đạt
+    // My code
+    @GetMapping("/")
     private Package getAllCustomers(@RequestParam Optional<String> page){
         try {
             int pageSize = 10;
@@ -52,7 +51,8 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/{id}") // Đạt
+    // My code
+    @GetMapping("/{id}")
     private Package getCustomerById(@PathVariable("id") String id){
         try {
             CustomerModel customer = cusDb.findCustomerById(id);
@@ -62,7 +62,8 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/{id}/transactions") // Đạt
+    // My code
+    @GetMapping("/{id}/transactions")
     private Package getTransactionsByCustomerId(@PathVariable("id") String id, @RequestParam Optional<String> page){
         try {
             int pageSize = 10;
