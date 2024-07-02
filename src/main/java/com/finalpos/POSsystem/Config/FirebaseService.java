@@ -24,16 +24,20 @@ public class FirebaseService {
 
     @PostConstruct
     private void initialize() throws IOException {
-        // Reads the configurations from JSON file, then initializes the connection for the specified database
-        FileInputStream serviceAccount =
-                new FileInputStream(SERVICE_ACCOUNT);
+        try {
+            // Reads the configurations from JSON file, then initializes the connection for the specified database
+            FileInputStream serviceAccount =
+                    new FileInputStream(SERVICE_ACCOUNT);
 
-        Credentials credentials = GoogleCredentials.fromStream(serviceAccount);
+            Credentials credentials = GoogleCredentials.fromStream(serviceAccount);
 
-        storage = StorageOptions.newBuilder()
-                .setCredentials(credentials)
-                .build()
-                .getService();
+            storage = StorageOptions.newBuilder()
+                    .setCredentials(credentials)
+                    .build()
+                    .getService();
+        } catch (IOException e) {
+            throw new RuntimeException("Error initializing FirebaseService: " + e.getMessage(), e);
+        }
     }
 
     public String uploadImage(MultipartFile file) throws IOException {
