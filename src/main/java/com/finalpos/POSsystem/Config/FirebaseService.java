@@ -1,4 +1,6 @@
 package com.finalpos.POSsystem.Config;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import org.apache.commons.io.FilenameUtils;
 import com.google.auth.Credentials;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -7,37 +9,54 @@ import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit ;
 import com.google.cloud.storage.BlobInfo;
 
 @Service
 public class FirebaseService {
 //    private static final String SERVICE_ACCOUNT = "./src/main/resources/serviceAccountKey.json";
-    private static final String SERVICE_ACCOUNT = "serviceAccountKey.json";
 
     @Value("${BUCKET_NAME}")
     private String BUCKET_NAME;
-    private static Storage storage;
-
+//    private static Storage storage;
+    private Storage storage;
     @PostConstruct
     private void initialize() throws IOException {
-        try {
-            // Reads the configurations from JSON file, then initializes the connection for the specified database
-            FileInputStream serviceAccount =
-                    new FileInputStream(SERVICE_ACCOUNT);
+        // Reads the configurations from JSON file, then initializes the connection for the specified database
+//        FileInputStream serviceAccount =
+//                new FileInputStream("src/main/resources/serviceAccountKey.json");
+//
+//        Credentials credentials = GoogleCredentials.fromStream(serviceAccount);
+//
+//        storage = StorageOptions.newBuilder()
+//                .setCredentials(credentials)
+//                .build()
+//                .getService();
 
-            Credentials credentials = GoogleCredentials.fromStream(serviceAccount);
+        // Reads the configurations from JSON file, then initializes the connection for the specified database
+        ClassPathResource resource = new ClassPathResource("serviceAccountKey.json");
 
+        // Read the InputStream once and create GoogleCredentials
+        try (InputStream serviceAccount = resource.getInputStream()) {
+            GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccount);
+
+            // Initialize Firebase
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(credentials)
+                    .build();
+            FirebaseApp.initializeApp(options);
+
+            // Initialize Google Cloud Storage
             storage = StorageOptions.newBuilder()
                     .setCredentials(credentials)
                     .build()
                     .getService();
-        } catch (IOException e) {
-            throw new RuntimeException("Error initializing FirebaseService: " + e.getMessage(), e);
         }
     }
 
