@@ -16,7 +16,8 @@ import com.google.cloud.storage.BlobInfo;
 
 @Service
 public class FirebaseService {
-    private static final String SERVICE_ACCOUNT = "./src/main/resources/serviceAccountKey.json";
+//    private static final String SERVICE_ACCOUNT = "./src/main/resources/serviceAccountKey.json";
+    private static final String SERVICE_ACCOUNT = "src/main/resources/serviceAccountKey.json";
 
     @Value("${BUCKET_NAME}")
     private String BUCKET_NAME;
