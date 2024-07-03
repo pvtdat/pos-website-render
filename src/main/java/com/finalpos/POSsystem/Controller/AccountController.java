@@ -20,6 +20,7 @@ import java.util.Optional;
 
 @Controller
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/account")
 @ResponseBody
 public class AccountController {
