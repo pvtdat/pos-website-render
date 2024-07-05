@@ -18,7 +18,7 @@ function App() {
 		const token = localStorage.getItem('token');
 		if (token) {
 			// Fetch user data
-			axios.get('/api/account/', { headers: { 'Authorization': token } })
+			axios.get('https://pos-website-server.onrender.com/api/account/', { headers: { 'Authorization': token } })
 			.then(response => {
 				const res = response.data;
 				if (res.code !== 0) {
