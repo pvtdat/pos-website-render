@@ -22,7 +22,7 @@ function Dashboard() {
     const fetchAllOrders = async () => {
         setLoading(true);
         setError(null);
-        axios.get('/api/orders-analyst/allOrders', {
+        axios.get('https://pos-website-server.onrender.com/api/orders-analyst/allOrders', {
             headers: {
                 
                 'Authorization': localStorage.getItem('token')

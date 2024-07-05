@@ -197,7 +197,7 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
     };
 
     const fetchData = async (startDate, endDate) => {
-        const url = "/api/orders-analyst/byDay";
+        const url = "https://pos-website-server.onrender.com/api/orders-analyst/byDay";
         const headers = {
         Authorization: localStorage.getItem("token"),
         "Content-Type": "application/x-www-form-urlencoded",

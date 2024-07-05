@@ -20,7 +20,7 @@ export const Login = (props) => {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
     
-        axios.post('/api/account/login', {username, password}, {
+        axios.post('https://pos-website-server.onrender.com/api/account/login', {username, password}, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
             }

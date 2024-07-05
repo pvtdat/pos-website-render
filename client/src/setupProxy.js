@@ -5,6 +5,7 @@ module.exports = function (app) {
     createProxyMiddleware({
       // target: "http://localhost:8080",
         target: "https://pos-website-server.onrender.com",
+      //   target: "",
         changeOrigin: true,
     })
   );
