@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import './ForgetPassword.css';
 
-
 export const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -14,14 +13,12 @@ export const ForgetPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
     setIsSubmitted(true);
   };
 
   return (
     <div className="forget-password-container">
-      <h2>Forgot Password</h2>
+      <h2 className="font-heading">Forgot Password</h2>
       {isSubmitted ? (
         <div className="message">
           Please check your email for instructions to reset your password.

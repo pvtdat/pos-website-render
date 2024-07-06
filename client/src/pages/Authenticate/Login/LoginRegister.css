@@ -26,7 +26,6 @@ a {
 
 
 /* STRUCTURE */
-
 .wrapper {
   display: flex;
   align-items: center;
@@ -40,19 +39,18 @@ a {
 
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   background: #fff;
-  padding: 30px;
   width: 90%;
   max-width: 450px;
   position: relative;
-  padding: 0px;
+  padding: 0;
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
 }
 
-#formFooter {
+#formFooter{
   background-color: #f6f6f6;
   border-top: 1px solid var(--main-background);
   padding: 25px;
@@ -60,8 +58,6 @@ a {
   -webkit-border-radius: 0 0 10px 10px;
   border-radius: 0 0 10px 10px;
 }
-
-
 
 /* TABS */
 
@@ -74,12 +70,10 @@ a {
   border-bottom: 2px solid var(--sub-background);
 }
 
-
-
 /* FORM TYPOGRAPHY*/
 
 #login-btn  {
-  background-color: var(--sub-background);
+  background-color: var(--main-background);
   border: none;
   color: white;
   padding: 15px 80px;
@@ -91,7 +85,7 @@ a {
   box-shadow: 0 5px 15px 0 rgb(164, 163, 163);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 40px 20px;
+  margin: 5px 20px 10px 20px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -100,20 +94,17 @@ a {
 }
 
 #login-btn:hover, #login-btn:focus  {
-  background-color: var(--main-background);
+  background-color: var(--sub-background);
 }
 
 #login-btn:active  {
-  -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
   -ms-transform: scale(0.95);
   transform: scale(0.95);
 }
 
 #password, #username {
   background-color: var(--main-color);
-  border: none;
   color: #0d0d0d;
   padding: 15px 32px;
   text-align: center;
@@ -122,7 +113,7 @@ a {
   font-size: 16px;
   margin: 5px;
   width: 85%;
-  border: 2px solid #f6f6f6;
+  border: none;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -137,12 +128,13 @@ a {
   border-bottom: 2px solid var(--sub-background);
 }
 
-#username:placeholder {
+#username::placeholder {
   color: #cccccc;
 }
 
-
-
+#password::placeholder {
+  color: #cccccc;
+}
 /* ANIMATIONS */
 
 /* Simple CSS3 Fade-in-down Animation */
@@ -226,14 +218,18 @@ a {
 }
 
 /* Simple CSS3 Fade-in Animation */
+.underlineHover {
+  position: relative;
+}
+
 .underlineHover:after {
-  display: block;
+  content: "";
+  position: absolute;
   left: 0;
-  bottom: -10px;
+  bottom: -1px;
   width: 0;
   height: 2px;
   background-color: var(--main-background);
-  content: "";
   transition: width 0.2s;
 }
 
@@ -245,8 +241,6 @@ a {
   width: 100%;
 }
 
-
-
 /* OTHERS */
 
 *:focus {
@@ -255,7 +249,7 @@ a {
 
 #icon {
   width: 150px;
-  height: 150x;
+  height: 150px;
   border-radius: 50%;
 }
 

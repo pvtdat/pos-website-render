@@ -3,7 +3,9 @@ import axios from "axios";
 function DeleteModal({ refreshUsers }) {
   const handleDeleteUser = () => {
     const userId = document.getElementById("id-delete").textContent;
-    axios.delete(`/api/users/${userId}`,{
+	const server_url = process.env.REACT_APP_API_ENDPOINT;
+	const url = `${server_url}/api/users/${userId}`;
+    axios.delete(url,{
 		headers: {
 			Authorization: localStorage.getItem("token"),
 		},
@@ -26,7 +28,7 @@ function DeleteModal({ refreshUsers }) {
       <div class="modal-dialog">
         <div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Delete Confirmation</h4>
+				<h4 class="modal-title font-heading">Delete Confirmation</h4>
 				<button type="button" class="close" data-dismiss="modal">
 				&times;
 				</button>

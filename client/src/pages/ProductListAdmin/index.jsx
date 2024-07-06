@@ -9,7 +9,6 @@ function ProductListAdmin() {
     const queryParams = new URLSearchParams(location.search);
     const page = queryParams.get('page') || 1;
 
-
     const [products, setProducts] = useState(null);
     const [divider, setDivider] = useState(1);
     const [category, setCategory] = useState("");
@@ -22,9 +21,11 @@ function ProductListAdmin() {
 
     }, [category, search, page]);
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/products/?page=${page}`;
     const fetchProducts = async () => {
         setLoading(false);
-        axios.get('/api/products/?page='+page, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }
@@ -49,8 +50,8 @@ function ProductListAdmin() {
     return ( 
         <Fragment>
             <div className="card rounded">
-                <div className="card-header bg-main text-white text-center">
-                    <h3>Manage product lists</h3>
+                <div className="card-header bg-main text-main text-center">
+                    <h3 className="font-heading">MANAGE PRODUCT LISTS</h3>
                 </div>
                 <div className="card-body">
                     <div className="row my-3">

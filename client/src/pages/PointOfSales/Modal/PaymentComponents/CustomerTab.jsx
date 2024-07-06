@@ -33,7 +33,8 @@ function CustomerTab({isPay}) {
         3: VNPay
     */
 
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/pos/find-customer/${phone}`;
     const handleCheckout = () => {
         setError(null);
         if(phone.length === 0){
@@ -41,7 +42,7 @@ function CustomerTab({isPay}) {
             return;
         }
         try{
-            axios.get('/api/pos/find-customer/'+phone,{
+            axios.get(url,{
                 headers: {
                     'Authorization': localStorage.getItem('token'),
                 }
@@ -68,7 +69,7 @@ function CustomerTab({isPay}) {
     return ( 
         <Fragment>
             <div className="text-center">
-                <h3>Filling Information of Customer</h3>
+                <h3 className="font-heading">Filling information of customer</h3>
             </div>
             <div className="my-5">
                 <div class="row">

@@ -8,10 +8,11 @@ function CustomerDetail() {
 
     const [customer, setCustomer] = useState(null);
     const [error, setError] = useState(null);
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/customers/${id}`;
 
     const handleFetchCustomer = async (req, res) => {
-        axios.get('/api/customers/' + id, {
+        axios.get(url, {
             headers: { 
                 'Authorization': localStorage.getItem('token')
             }
@@ -33,25 +34,25 @@ function CustomerDetail() {
         handleFetchCustomer();
     }, []);
     return ( 
-        <div class="card">
-            <div class="card-body py-5">
+        <div className="card">
+            <div className="card-body py-5">
                 <div className="row">
                     <div className="col-sm-12 col-md-12 col-lg-3">
-                        <ul class="nav nav-tabs list-group">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#profile">Profile</a>
+                        <ul className="nav nav-tabs list-group border-0">
+                            <li className="nav-item">
+                                <a className="nav-link active border-custom" data-toggle="tab" href="#profile">Profile</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#transaction">Transaction history</a>
+                            <li className="nav-item">
+                                <a className="nav-link border-custom" data-toggle="tab" href="#transaction">Transaction History</a>
                             </li>
                         </ul>
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-9">
-                    <div class="tab-content">
-                        <div id="profile" class="container tab-pane active">
+                    <div className="tab-content">
+                        <div id="profile" className="container tab-pane active">
                             <Profile customer={customer} />
                         </div>
-                        <div id="transaction" class="container tab-pane">
+                        <div id="transaction" className="container tab-pane">
                             {customer&&<Transactions customer_id={customer.id} />}
                         </div>
                     </div>

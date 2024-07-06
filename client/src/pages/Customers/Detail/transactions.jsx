@@ -13,11 +13,11 @@ function Transactions({customer_id}) {
     const [divider, setDivider] = useState(1);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/customers/${customer_id}/transactions?page=${page}`;
     
     const handleFetchTransactions = async () => {
-        axios.get('/api/customers/' + customer_id + '/transactions?page='+page, {
+        axios.get(url, {
             headers: { 
                 'Authorization': localStorage.getItem('token')
             }

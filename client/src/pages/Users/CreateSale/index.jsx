@@ -11,13 +11,15 @@ export const CreateSale = (props) => {
     const [loading, setLoading] = useState(false);
 
     const [error, setErorr] = useState(null);
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/users/register`;
     function handleRegister(event) {
         event.preventDefault();
         setLoading(true);
         setErorr(null);
         setCreated(false);
 
-        axios.post('/api/users/register', {name, email}, {
+        axios.post(url, {name, email}, {
             headers: { 
                 'Authorization': localStorage.getItem('token'),
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -42,10 +44,10 @@ export const CreateSale = (props) => {
     return (
         <Fragment>
             <div className="card">
-                <div className="card-header text-center bg-main text-white">
-                    <h3>CREATE ACCOUNT FOR SALER</h3>
+                <div className="card-header text-center bg-main text-main">
+                    <h4 className="font-heading">CREATE ACCOUNT FOR SALESPERSON</h4>
                 </div>
-                <div className="card-body border border-main">
+                <div className="card-body border">
                     <div className="row">
                         <div className="col-md-6">
                             <div className="alert alert-primary border border-primary">

@@ -6,7 +6,8 @@ function ChangePassword() {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState('');
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/account/change-password`;
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -17,7 +18,7 @@ function ChangePassword() {
                 return;
             }
 
-            const response = await axios.post('/api/account/change-password', {
+            const response = await axios.post(url, {
                 currentPassword,
                 newPassword,
                 confirmPassword,

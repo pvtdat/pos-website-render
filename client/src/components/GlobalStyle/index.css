@@ -1,5 +1,6 @@
 /* Google Fonts  */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One:wght@400;500;600;700&display=swap');
 
 /* Globals  */
 *{
@@ -18,6 +19,10 @@
     --color_Dark2: #252527;
     --color_Light1: #dfdfdf;
     --color_Light2: #c4c4c4;
+}
+
+.font-heading {
+    font-family: 'Poetsen One', serif;
 }
 
 /* =============== Sidebar =============== */

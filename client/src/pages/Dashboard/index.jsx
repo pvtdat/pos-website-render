@@ -8,21 +8,20 @@ import { forEach } from 'lodash';
 import Num2VND from "../../components/Num2VND";
 
 function Dashboard() {
-
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-
-    
     const [orders, setOrders] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [totalPrice, setTotalPrice] = useState(null);
     const [totalProducts, setTotalProducts] = useState(null);
     const [profit, setProfit] = useState(null);
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/orders-analyst/allOrders`;
     const fetchAllOrders = async () => {
         setLoading(true);
         setError(null);
-        axios.get('https://pos-website-server.onrender.com/api/orders-analyst/allOrders', {
+        axios.get(url, {
             headers: {
                 
                 'Authorization': localStorage.getItem('token')
@@ -53,7 +52,7 @@ function Dashboard() {
     return ( 
         <div className="card rounded">
             <div className="card-header bg-main text-main text-center">
-                <h3>ANALYSIS TOOL</h3>
+                <h3 className="font-heading">ANALYSIS TOOL</h3>
             </div>
             <div className="card-body">
                 <BodyAnalyst  orders={orders} totalPrice={totalPrice} totalProducts={totalProducts} profit={profit} fetch={fetchAllOrders}/>

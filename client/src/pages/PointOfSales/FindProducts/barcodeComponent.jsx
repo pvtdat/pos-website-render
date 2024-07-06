@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import axios from 'axios'; 
 function Barcode({AddToCart}) {
-    const [barcode, setBarcode] = useState("");    
+    const [barcode, setBarcode] = useState("");
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/pos/search-product/${barcode}`;
     // Find product by barcode
     const handleEnter = async (e) => {
         if (e.key === "Enter") {
             if(barcode) {
-                axios.get(`/api/pos/search-product/${barcode}`, {
+                axios.get(url, {
                     headers: { 
                         'Authorization': localStorage.getItem('token'),
                     }

@@ -29,16 +29,15 @@ function AddNew() {
         formData.append("description", description);
         formData.append("image", image);
         postToServer(formData);
-
-
     }
-    
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/products/add`;
     const postToServer = async (product) => {
         setLoading(true);
         setError(null);
         try {
-          const response = await axios.post("/api/products/add", product, {
+          const response = await axios.post(url, product, {
             headers: {
               'Authorization': localStorage.getItem('token'),
               "Content-Type": "multipart/form-data",
@@ -68,8 +67,8 @@ function AddNew() {
     }, [image]);
     return ( 
         <div className="card">
-            <div className="card-header text-center text-uppercase">
-                <h3>Add a new Product</h3>
+            <div className="card-header text-center">
+                <h3 className="font-heading">Add a new product</h3>
             </div>
             <div className="card-body">
                 <form>

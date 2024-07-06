@@ -1,4 +1,3 @@
-
 import React,  { useEffect, useState, Fragment } from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { publicRouters, privateRouters, adminRouters, salerRouters, customerRouters} from './routes';
@@ -6,19 +5,19 @@ import axios from 'axios';
 import { DefaultLayout } from "./components/Layout";
 import LoadingScreen from "./components/LoadingScreen";
 
-
 function App() {
 	// Initial Authentication State
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const server_url = process.env.REACT_APP_API_ENDPOINT;
+	const url = `${server_url}/api/account/`;
 
-  
-  	useEffect(() => {
+	useEffect(() => {
 		// Check if a token exists in local storage
 		const token = localStorage.getItem('token');
 		if (token) {
 			// Fetch user data
-			axios.get('https://pos-website-server.onrender.com/api/account/', { headers: { 'Authorization': token } })
+			axios.get(url, { headers: { 'Authorization': token } })
 			.then(response => {
 				const res = response.data;
 				if (res.code !== 0) {
@@ -43,44 +42,56 @@ function App() {
 		}
   	}, []);
 
-  	const handleRenderRouters = (routers) =>{
+	const handleRenderRouters = (routers) => {
 		const paths = routers.map((route, index) => {
-
 			let Layout = DefaultLayout;
 
-			if(route.layout){
-				Layout = route.layout
-			}else if(route.layout === null){
+			if (route.layout) {
+				Layout = route.layout;
+			} else if (route.layout === null) {
 				Layout = Fragment;
 			}
 
 			const Page = route.element;
-			let tempRole = <Route 
-				key={index} 
-				path={route.path} 
-				element={
-					<Layout user={user}>
+
+			const routeElement = Layout === Fragment
+				? (
+					<Layout key={index}>
 						<Page />
 					</Layout>
-				}
-			/>
-			if(!user){
-				tempRole = <Route 
-					key={index} 
-					path={route.path} 
-					element={
-						<Layout>
-							<Page />
-						</Layout>
-					}
-				/>
-			}
+				)
+				: (
+					<Layout key={index} user={user}>
+						<Page />
+					</Layout>
+				);
+
+			const tempRole = !user && Layout !== Fragment
+				? (
+					<Route
+						key={index}
+						path={route.path}
+						element={
+							<Layout>
+								<Page />
+							</Layout>
+						}
+					/>
+				)
+				: (
+					<Route
+						key={index}
+						path={route.path}
+						element={routeElement}
+					/>
+				);
+
 			return tempRole;
 		});
-	return paths;
-  }
+		return paths;
+	};
 
-  	if (loading) {
+	if (loading) {
     	return <LoadingScreen />;
   	}
 	return (

@@ -11,6 +11,8 @@ function DirectLogin() {
     const [error, setError] = useState(false);
     const [alert, setAlert] = useState(null);
     const [data, setData] = useState(null);
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/account/direct`;
 
     useEffect(()=>{
         handleVerifyToken(token);
@@ -19,7 +21,7 @@ function DirectLogin() {
     const handleVerifyToken = async (token) =>{
 
         
-        axios.post('/api/account/direct', {token}, {
+        axios.post(url, {token}, {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
             }

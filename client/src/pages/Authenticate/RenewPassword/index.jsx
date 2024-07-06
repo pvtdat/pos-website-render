@@ -23,13 +23,16 @@ function RenewPassword() {
         handleChangePassword();
     }
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/account/renew-password`;
+
     const handleChangePassword = () =>{
         setLoading(true);
         const token = localStorage.getItem('token');
         const data = {
             password: password,
         };
-        axios.put('/api/account/renew-password', data, {
+        axios.put(url, data, {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
               'Authorization': `${token}`

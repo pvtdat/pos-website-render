@@ -10,16 +10,17 @@ function Orders() {
     const queryParams = new URLSearchParams(location.search);
     const page = queryParams.get('page') || 1;
 
-
     const [orders, setOrders] = useState(null);
     const [divider, setDivider] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/orders/?page=${page}`;
     const fetchOrders = async () => {
         setLoading(true);
         setError(null);
-        axios.get('/api/orders/?page='+page, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }
@@ -46,7 +47,7 @@ function Orders() {
     return ( 
         <div className="card rounded">
             <div className="card-header bg-main text-main text-center">
-                <h3>Manage ordered list</h3>
+                <h3 className="font-heading">MANAGE ORDER LISTS</h3>
             </div>
             <div className="card-body">
                 <OrderList orders={orders} fetch={fetchOrders}/>

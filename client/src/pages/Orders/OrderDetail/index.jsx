@@ -11,13 +11,15 @@ function OrderDetail() {
     const [loading, setLoading] = useState(false);
     const [order, setOrder] = useState(null);
     const [error, setError] = useState(null);
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/orders/${order_number}`;
 
     useEffect(() => {
         handleFetchOrderDetails(order_number);
     }, []);
 
     const handleFetchOrderDetails = async (order_number) => {
-        axios.get(`/api/orders/${order_number}`, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }
@@ -62,7 +64,7 @@ function OrderDetail() {
     return ( 
         <div class="card">
             <div class="card-header text-main bg-main">
-                <h3>CODE ORDER #{order_number}</h3>
+                <h4 className="font-heading">CODE ORDER #{order_number}</h4>
             </div>
             <div class="card-body capture-invoice">
                 <div className="row">
@@ -135,7 +137,7 @@ function OrderDetail() {
                 </div>
                 <div className="row">
                     <div className="col-12 text-center text-uppercase">
-                        <h4>Order Information</h4>
+                        <h4 className="font-heading">Order Information</h4>
                     </div>
                     <div className="col-12">
                         <table className="table table-hover table-bordered border-rounded text-center">

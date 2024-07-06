@@ -6,14 +6,15 @@ function RegisterHidden() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name,setName] = useState('');
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/account/register_admin`;
     const handleRegister = () => {
         const data = {
             username: username,
             email: email,
             password: password
         }
-        axios.post('/api/account/register_admin', data).then((response) => {
+        axios.post(url, data).then((response) => {
             console.log(response);
         })
     }

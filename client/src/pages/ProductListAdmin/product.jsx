@@ -23,9 +23,11 @@ function ProductItem({index, product,refreshProducts}) {
         setShowConfirmModal(false);
       };
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/products/${product.barcode}`;
       const handleRemoveProduct = () => {
 
-        axios.delete(`/api/products/${product.barcode}`, {
+        axios.delete(url, {
           headers: {
             'Authorization': localStorage.getItem('token')
           }

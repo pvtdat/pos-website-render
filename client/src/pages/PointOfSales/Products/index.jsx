@@ -24,11 +24,12 @@ function Products({searchProductItem, AddToCart}) {
         }
     }, [page, searchProductItem]);
 
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/products/?page=${page}`;
     const handleFetchProducts = async () => {
         setError(null);
         setLoading(true);
-        axios.get('/api/products/?page='+page, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }

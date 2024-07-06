@@ -91,9 +91,10 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
                 },
                 title: {
                     display: true,
-                    text: 'THE REPORT OF ORDERS',
+                    text: 'ORDER REPORT',
                     font: {
                         size: 24,
+                        family: 'Poetsen One, serif',
                     },
                 },
             },
@@ -196,8 +197,9 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
         }
     };
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/orders-analyst/byDay`;
     const fetchData = async (startDate, endDate) => {
-        const url = "https://pos-website-server.onrender.com/api/orders-analyst/byDay";
         const headers = {
         Authorization: localStorage.getItem("token"),
         "Content-Type": "application/x-www-form-urlencoded",
@@ -290,12 +292,12 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
             </li>
         </ul>
 
-                <div class="tab-content">
+                <div className="tab-content">
                     <div className="tab-pane fade" id="yesterday"></div>
                     <div className="tab-pane fade" id="today"></div>
                     <div className="tab-pane fade" id="7days"></div>
                     <div className="tab-pane fade in active" id="month"></div>
-                    <div id="time" class="tab-pane fade">
+                    <div id="time" className="tab-pane fade">
                         <div className="row my-3">
                             <div className="col-sm-12 col-md-2"></div>
                             <div className="col-sm-12 col-md-4">
@@ -332,20 +334,20 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
                 <div className="chart__information my-5 text-center d-flex justify-content-center flex-wrap">
                     <span className="border p-4 m-2 text-bold shadow-sm border-success rounded">
                         <strong>TOTAL</strong>
-                        <span class="mx-2 p-2 badge badge-success">{Num2VND(orderTotalPrice)}</span>
+                        <span className="mx-2 p-2 badge badge-success">{Num2VND(orderTotalPrice)}</span>
                     </span>
                     <span className="border p-4 m-2 text-bold shadow-sm border-primary rounded">
                         <strong>ORDERS</strong>
-                        <span class="mx-2 p-2 badge badge-primary">{numberOfOrders}</span>
+                        <span className="mx-2 p-2 badge badge-primary">{numberOfOrders}</span>
                     </span>
                     <span className="border p-4 m-2 text-bold shadow-sm border-info rounded">
                         <strong>PRODUCTS</strong>
-                        <span class="mx-2 p-2 badge badge-info">{numberOfProducts}</span>
+                        <span className="mx-2 p-2 badge badge-info">{numberOfProducts}</span>
                     </span>
                     {totalProfit != null && (
                         <span className="border p-4 m-2 text-bold shadow-sm border-warning rounded">
                             <strong>PROFIT</strong>
-                            <span class="mx-2 p-2 badge badge-warning">{Num2VND(totalProfit)}</span>
+                            <span className="mx-2 p-2 badge badge-warning">{Num2VND(totalProfit)}</span>
                         </span>
                     )}
                 </div>
@@ -360,9 +362,9 @@ function BodyAnalyst({ orders, totalPrice, totalProducts, profit, fetch }) {
             <div className="col-12 text-center">
                 <button className='btn btn-outline-success' data-toggle="collapse" data-target="#details" onClick={()=> setShow(!show)}>
                 {!show? (
-                    <span>Show more details <i class="fa-regular fa-square-caret-down"></i></span>
+                    <span>Show more details <i className="fa-regular fa-square-caret-down"></i></span>
                 ) : (
-                    <span>Hide details <i class="fa-regular fa-square-caret-up"></i></span>
+                    <span>Hide details <i className="fa-regular fa-square-caret-up"></i></span>
                 )}
                 </button>
 

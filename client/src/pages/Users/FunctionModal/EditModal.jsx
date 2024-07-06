@@ -31,8 +31,10 @@ function EditModal({ refreshUsers }) {
       	status: $('#edit__status').val(),
     };
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/users/${$('#edit__id').val()}`;
     axios
-      .put(`/api/users/${$('#edit__id').val()}`, updatedUser, {
+      .put(url, updatedUser, {
         headers: {
           Authorization: localStorage.getItem('token'),
 		  "Content-Type": "application/x-www-form-urlencoded",
@@ -55,7 +57,7 @@ function EditModal({ refreshUsers }) {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h4 className="modal-title" id="modal-title-userlist">
+            <h4 className="modal-title font-heading" id="modal-title-userlist">
               Edit Information
             </h4>
             <button type="button" className="close" data-dismiss="modal">

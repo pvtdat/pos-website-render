@@ -19,6 +19,8 @@ function PaymentModal({UpdateCart, resetCart}) {
         setCart(JSON.parse(localStorage.getItem('cart')) || []);
     }, [UpdateCart, payable]);
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/pos/create-a-bill`;
 
     const handleMakePayment = () => {
         setLoadInvoices(null);
@@ -37,7 +39,7 @@ function PaymentModal({UpdateCart, resetCart}) {
                 cash: cash,
                 token: token
             }
-        axios.post('/api/pos/create-a-bill',payment,{
+        axios.post(url, payment, {
             headers: {
                 'Authorization': token,
                 "Content-Type": "application/json"
@@ -96,7 +98,7 @@ function PaymentModal({UpdateCart, resetCart}) {
             <div class="modal-content">
             
                 <div class="modal-header bg-main text-light">
-                    <h4 class="modal-title">Payment Confirmation</h4>
+                    <h4 class="modal-title font-heading">Payment Confirmation</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 
@@ -111,7 +113,7 @@ function PaymentModal({UpdateCart, resetCart}) {
                     </ul>
 
                     {/* <!-- Tab panes --> */}
-                    <div class="tab-content">
+                    <div class="tab-content mt-4">
                         <div id="customer_tab" class="container tab-pane active">
                             <CustomerTab isPay={handleCheckPayable}/>
                         </div>

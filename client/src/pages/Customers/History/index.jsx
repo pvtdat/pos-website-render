@@ -16,12 +16,13 @@ function History() {
     const [customer, setCustomer] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/customers/${id}/transactions?page=${page}`;
 
     const handleFetchTransactions = async () => {
         setLoading(true);
         setError(null);
-        axios.get('/api/customers/' + id + '/transactions?page='+page, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }
@@ -47,11 +48,11 @@ function History() {
         handleFetchTransactions();
     }, [page]);
     return ( 
-        <div class="card">
+        <div className="card">
             <div className="card-header bg-main text-light">
-                <h3 className="text-uppercase">History transtions of {customer && customer.name}</h3>
+                <h4 className="text-uppercase font-heading">History transactions of {customer && customer.name}</h4>
             </div>
-            <div class="card-body">
+            <div className="card-body">
                 <OrderList orders={transactions}  fetch={handleFetchTransactions}/>
                 <div className="row">
                     <Pagination root={'customers/history/'+id} divider={divider} />

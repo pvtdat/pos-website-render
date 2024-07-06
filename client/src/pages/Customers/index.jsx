@@ -16,12 +16,13 @@ function Customers() {
     const [divider, setDivider] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/customers/?page=${page}`;
 
     const handleFetchCustomers = async () => {
         setError(null);
         setLoading(true);
-        axios.get('/api/customers/?page='+page, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }
@@ -49,7 +50,7 @@ function Customers() {
     return ( 
         <div className="card rounded">
             <div className="card-header bg-main text-main text-center">
-                <h3>Customer List</h3>
+                <h3 className="font-heading">MANAGE CUSTOMER LISTS</h3>
             </div>
             <div className="card-body">
                 <div className="row my-3">

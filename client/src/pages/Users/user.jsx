@@ -1,8 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import $ from 'jquery';
 function UserItem({ index, user }) {
-
-
 	const handleViewModal = (user) => {
 		$('#modaluser__img').attr('src', user.image);
 		$('#modal__username').html(user.name);
@@ -22,16 +20,13 @@ function UserItem({ index, user }) {
     $('#editModal').modal('show');
 }
 
-
   const handleDeleteModal = (user) => {
 
     $('#username-delete').text(user.name);
     $('#id-delete').text(user.id);
 
   }
-  
-  
-  
+
   return (
     <Fragment>
       <tr>

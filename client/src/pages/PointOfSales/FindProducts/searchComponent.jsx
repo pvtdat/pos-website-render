@@ -4,9 +4,10 @@ import axios from 'axios';
 
 function Search({searchProducts}) {
     const [terms, setTerms] = useState("");
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/pos/search-products?terms=${terms}`;
     const handleSearchTerms = async () =>{
-        axios.get(`/api/pos/search-products?terms=`+terms,
+        axios.get(url,
         {headers: { 'Authorization': localStorage.getItem('token')}}
         ).then(response => {
             const res = response.data;

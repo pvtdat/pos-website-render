@@ -2,6 +2,7 @@ import { useState, Fragment } from "react";
 import axios from "axios";
 import Toast from "../../../components/Layout/components/Toast/";
 import LoadingImg from "../../../components/Layout/components/LoadingImg";
+import $ from "jquery";
 function ResendEmail() {
     const [email, setEmail] = useState(null);
     const [alert, setAlert] = useState(null);
@@ -13,12 +14,14 @@ function ResendEmail() {
         postToSend(user);
     }
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/users/resend`;
     const postToSend = (user) =>{
         setAlert(null);
         setError(null);
         setStatus(true);
 
-        axios.post('/api/users/resend',user, {
+        axios.post(url, user, {
             headers: {
                 'Authorization': localStorage.getItem('token'),
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -42,7 +45,7 @@ function ResendEmail() {
         <Fragment >
             <div className="card">
             <div className="card-header bg-main text-main text-center">
-                <h3>RESEND EMAIL</h3>
+                <h4 className="font-heading">RESEND EMAIL</h4>
             </div>
             <div className="card-body">
                 <div className="row">

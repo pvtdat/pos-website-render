@@ -55,9 +55,9 @@ function ProductItem({product, AddToCart}) {
                         <img src={product.image} alt="Image" width={'100'} height={'100'} />
                     </div>
                     <div className="card__title mt-2">
-                        <h5 title={product.name}>{name}</h5>
+                        <h6 title={product.name}>{name}</h6>
                     </div>
-                    <div className="text-center text-danger">
+                    <div className="text-center text-danger font-weight-bold">
                         <span>{Num2VND(product.retail_price)}</span>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ function InvoiceTab({invoice}) {
                 
                     <div class="modal-header bg-main text-light">
                         <div class="modal-title">
-                            <h4>Invoice Information</h4>
+                            <h4 className="font-heading">Invoice Information</h4>
                         </div>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>

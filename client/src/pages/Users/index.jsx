@@ -23,10 +23,12 @@ function UserList() {
         fetchUsers();
     }, [role, search, status, location]);
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/users/?page=${page}`;
     const fetchUsers = async () => {
         setLoading(false);
         setError(null);
-        axios.get('/api/users/?page='+page, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token')
             }
@@ -52,8 +54,8 @@ function UserList() {
     return ( 
         <Fragment>
             <div className="card rounded">
-                <div className="card-header bg-main text-white text-center">
-                    <h3>Manage user lists</h3>
+                <div className="card-header bg-main text-main text-center">
+                    <h3 className="font-heading">MANAGE USER LISTS</h3>
                 </div>
                 <div className="card-body">
                     <div className="row my-3">

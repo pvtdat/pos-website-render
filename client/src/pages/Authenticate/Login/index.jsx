@@ -13,16 +13,18 @@ export const Login = (props) => {
       setShowPassword(!showPassword);
     };
     function handleLogin(event) {
+        event.preventDefault();
         setLogin(true);
         setError(null);
-
-        event.preventDefault();
+        
+        const server_url = process.env.REACT_APP_API_ENDPOINT;
+        const url = `${server_url}/api/account/login`;
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-    
-        axios.post('https://pos-website-server.onrender.com/api/account/login', {username, password}, {
+
+        axios.post(url, {username, password}, {
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded',
             }
         })
             .then(response => {
@@ -35,12 +37,13 @@ export const Login = (props) => {
                     setError(res.message);
                 }
                 setLogin(false);
-        })
-          .catch(error => {
-            setError(error);
-            setLogin(false);
-        });
+            })
+            .catch(error => {
+                setError(error);
+                setLogin(false);
+            });
     }
+
     return (
         <div className="wrapper fadeInDown d-flex align-items-center">
             <div id="formContent">
@@ -67,11 +70,11 @@ export const Login = (props) => {
                             id="password"
                             className="fadeIn third"
                             name="password"
-                            placeholder="Password"
+                            placeholder="password"
                         />
                     </div>
                     <div className="fadeIn fourth form-input my-3" onClick={togglePasswordVisibility}>
-                        <input checked={showPassword? true : false} type="checkbox" id="showPassword" className="form-check-input" />
+                        <input checked={showPassword} type="checkbox" id="showPassword" className="form-check-input" />
                         <label className="form-check-label">Show Password</label>
                     </div>
 
@@ -85,7 +88,8 @@ export const Login = (props) => {
 
                 {/* Remind Password */}
                 <div id="formFooter" className="mt-4">
-                    <Link className="underlineHover">Developed by MinhKy & HongKiet</Link>
+                    <a className="underlineHover" href="https://www.facebook.com/pvtd.2003/" target="_blank"
+                       rel="noopener noreferrer">Operated by DatPham.Com</a>
                 </div>
             </div>
         </div>

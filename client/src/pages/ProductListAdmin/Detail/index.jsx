@@ -10,8 +10,10 @@ function Product() {
     fetchProduct();
   }, []);
 
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/products/${barcode}`;
   const fetchProduct = async () => {
-    axios.get(`/api/products/${barcode}`, {
+    axios.get(url, {
       headers: {
         'Authorization': localStorage.getItem('token')
       }
@@ -30,8 +32,8 @@ function Product() {
   return (
 
       <div className="card">
-        <div className="card-header bg-main text-white text-center">
-          <h3>PRODUCT INFORMATION</h3>
+        <div className="card-header bg-main text-main text-center">
+          <h4 className="font-heading">PRODUCT INFORMATION</h4>
         </div>
         {product && (
           <div className="card-body">

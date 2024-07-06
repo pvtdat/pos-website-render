@@ -8,12 +8,13 @@ function AddwBarcode() {
     const [amount, setAmount] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const server_url = process.env.REACT_APP_API_ENDPOINT;
+    const url = `${server_url}/api/products/${barcode}`;
     const handleFetchProduct = async (barcode) => {
         setLoading(true);
         setProduct(null);
         setError(null);
-        axios.get('/api/products/' + barcode, {
+        axios.get(url, {
             headers: {
                 'Authorization': localStorage.getItem('token'),
             }
@@ -48,7 +49,7 @@ function AddwBarcode() {
     const handleUpdateProduct = async (e) => {
         e.preventDefault();
         setError(null);   
-        axios.patch('/api/products/' + barcode, { amount }, {
+        axios.patch(url, { amount }, {
             headers: {
                 'Authorization': localStorage.getItem('token'),
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -72,8 +73,8 @@ function AddwBarcode() {
     useEffect(() => {}, [product]);
     return ( 
         <div className="card">
-            <div className="card-header text-center text-uppercase">
-                <h3>Add With Barcode</h3>
+            <div className="card-header text-center">
+                <h3 className="font-heading">Add with barcode</h3>
             </div>
             <div className="card-body">
             <form>
