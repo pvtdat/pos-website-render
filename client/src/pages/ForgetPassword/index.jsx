@@ -18,7 +18,7 @@ export const ForgetPassword = () => {
 
   return (
     <div className="forget-password-container">
-      <h2 className="font-heading">Forgot Password</h2>
+      <h3 className="font-heading">Forgot Password</h3>
       {isSubmitted ? (
         <div className="message">
           Please check your email for instructions to reset your password.

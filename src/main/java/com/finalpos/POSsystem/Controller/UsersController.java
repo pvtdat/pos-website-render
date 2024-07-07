@@ -174,7 +174,6 @@ public class UsersController {
 
             Properties properties = System.getProperties();
 
-
             properties.put("mail.smtp.host", stringHost);
             properties.put("mail.smtp.port", "587");
             properties.put("mail.smtp.auth", "true");
@@ -187,17 +186,162 @@ public class UsersController {
                 }
             });
 
+            String htmlContent = "<!-- © 2018 Shift Technologies. All rights reserved. -->\n" +
+                    "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"table-layout:fixed;background-color:#f9f9f9\" id=\"bodyTable\">\n" +
+                    "    <tbody>\n" +
+                    "        <tr>\n" +
+                    "            <td style=\"padding-right:10px;padding-left:10px;\" align=\"center\" valign=\"top\" id=\"bodyCell\">\n" +
+                    "                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"wrapperWebview\" style=\"max-width:600px\">\n" +
+                    "                    <tbody>\n" +
+                    "                        <tr>\n" +
+                    "                            <td align=\"center\" valign=\"top\">\n" +
+                    "                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\n" +
+                    "                                    <tbody>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-top: 20px; padding-bottom: 20px; padding-right: 0px;\" align=\"right\" valign=\"middle\" class=\"webview\">\n" +
+                    "                                                <a href=\"https://pos-website-nine.vercel.app/\" style=\"color:#bbb;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:20px;text-transform:none;text-align:right;text-decoration:underline;padding:0;margin:0\" target=\"_blank\" class=\"text hideOnMobile\">Oh wait, there's more! →</a>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                    </tbody>\n" +
+                    "                                </table>\n" +
+                    "                            </td>\n" +
+                    "                        </tr>\n" +
+                    "                    </tbody>\n" +
+                    "                </table>\n" +
+                    "                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"wrapperBody\" style=\"max-width:600px\">\n" +
+                    "                    <tbody>\n" +
+                    "                        <tr>\n" +
+                    "                            <td align=\"center\" valign=\"top\">\n" +
+                    "                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"tableCard\" style=\"background-color:#fff;border-color:#e5e5e5;border-style:solid;border-width:0 1px 1px 1px;\">\n" +
+                    "                                    <tbody>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"background-color:#f36f21;font-size:1px;line-height:3px\" class=\"topBorder\" height=\"3\">&nbsp;</td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-top: 60px; padding-bottom: 20px;\" align=\"center\" valign=\"middle\" class=\"emailLogo\">\n" +
+                    "                                                <a href=\"#\" style=\"text-decoration:none\" target=\"_blank\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/hero-img/blue/logo.png\" style=\"width:100%;max-width:150px;height:auto;display:block\" width=\"150\">\n" +
+                    "                                                </a>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-bottom: 20px;\" align=\"center\" valign=\"top\" class=\"imgHero\">\n" +
+                    "                                                <a href=\"#\" style=\"text-decoration:none\" target=\"_blank\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/hero-img/blue/heroGradient/user-account.png\" style=\"width:100%;max-width:600px;height:auto;display:block;color: #f9f9f9;\" width=\"600\">\n" +
+                    "                                                </a>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-bottom: 5px; padding-left: 20px; padding-right: 20px;\" align=\"center\" valign=\"top\" class=\"mainTitle\">\n" +
+                    "                                                <h2 class=\"text\" style=\"color:#000;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:28px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:36px;text-transform:none;text-align:center;padding:0;margin:0\">Hi " + user.getName() + "</h2>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-bottom: 30px; padding-left: 20px; padding-right: 20px;\" align=\"center\" valign=\"top\" class=\"subTitle\">\n" +
+                    "                                                <h4 class=\"text\" style=\"color:#999;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0\">Verify Your Email Account</h4>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-left:20px;padding-right:20px\" align=\"center\" valign=\"top\" class=\"containtTable ui-sortable\">\n" +
+                    "                                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"tableDescription\">\n" +
+                    "                                                    <tbody>\n" +
+                    "                                                        <tr>\n" +
+                    "                                                            <td style=\"padding-bottom: 14px;\" align=\"center\" valign=\"top\" class=\"description\">\n" +
+                    "                                                                <p class=\"text\" style=\"color:#666;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0\">Your registration was successful!</p>\n" +
+                    "                                                            </td>\n" +
+                    "                                                        </tr>\n" +
+                    "                                                    </tbody>\n" +
+                    "                                                </table>\n" +
+                    "                                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"tableButton\">\n" +
+                    "                                                    <tbody>\n" +
+                    "                                                        <tr>\n" +
+                    "                                                            <td style=\"padding-top:20px;padding-bottom:20px\" align=\"center\" valign=\"top\">\n" +
+                    "                                                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" align=\"center\">\n" +
+                    "                                                                    <tbody>\n" +
+                    "                                                                        <tr>\n" +
+                    "                                                                            <td style=\"background-color: rgb(0, 210, 244); padding: 12px 35px; border-radius: 50px;\" align=\"center\" class=\"ctaButton\">\n" +
+                    "                                                                                <a href=\"" + SERVER_ADDRESS + "/direct/?token=" + token + "\" style=\"color:#fff;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600;font-style:normal;letter-spacing:normal;line-height:20px;text-transform:uppercase;text-align:center;text-decoration:none;display:block\" target=\"_blank\" class=\"text\">Confirm Email</a>\n" +
+                    "                                                                            </td>\n" +
+                    "                                                                        </tr>\n" +
+                    "                                                                    </tbody>\n" +
+                    "                                                                </table>\n" +
+                    "                                                            </td>\n" +
+                    "                                                        </tr>\n" +
+                    "                                                    </tbody>\n" +
+                    "                                                </table>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"font-size:1px;line-height:1px\" height=\"20\">&nbsp;</td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td align=\"center\" valign=\"top\" class=\"socialLinks\">\n" +
+                    "                                                <a href=\"https://www.facebook.com/pvtd.2003/\" style=\"display: inline-block;\" target=\"_blank\" class=\"facebook\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/social/light/facebook.png\" style=\"height:auto;width:100%;max-width:40px;margin-left:2px;margin-right:2px\" width=\"40\">\n" +
+                    "                                                </a>\n" +
+                    "                                                <a href=\"#\" style=\"display: inline-block;\" target=\"_blank\" class=\"instagram\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/social/light/instagram.png\" style=\"height:auto;width:100%;max-width:40px;margin-left:2px;margin-right:2px\" width=\"40\">\n" +
+                    "                                                </a>\n" +
+                    "                                                <a href=\"www.linkedin.com/in/datphamvantien\" style=\"display: inline-block;\" target=\"_blank\" class=\"linkdin\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/social/light/linkdin.png\" style=\"height:auto;width:100%;max-width:40px;margin-left:2px;margin-right:2px\" width=\"40\">\n" +
+                    "                                                </a>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding: 10px 10px 5px;\" align=\"center\" valign=\"top\" class=\"brandInfo\">\n" +
+                    "                                                <p class=\"text\" style=\"color:#bbb;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:20px;text-transform:none;text-align:center;padding:0;margin:0\">©&nbsp;FinnIT | Tran Xuan Soan Street | District 7, HCMC, Viet Nam.</p>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding: 0px 10px 10px;\" align=\"center\" valign=\"top\" class=\"footerEmailInfo\">\n" +
+                    "                                                <p class=\"text\" style=\"color:#bbb;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:20px;text-transform:none;text-align:center;padding:0;margin:0\">\n" +
+                    "                                                    If you have any questions please contact us <a href=\"mailto:phamvantiendat.work@gmail.com\" style=\"color:#bbb;text-decoration:underline\" target=\"_blank\">phamvantiendat.work@gmail.com</a>.\n" +
+                    "                                                    <br>\n" +
+                    "                                                </p>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px\" align=\"center\" valign=\"top\" class=\"appLinks\">\n" +
+                    "                                                <a href=\"#Play-Store-Link\" style=\"display: inline-block;\" target=\"_blank\" class=\"play-store\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/app/play-store.png\" style=\"height:auto;margin:5px;width:100%;max-width:120px\" width=\"120\">\n" +
+                    "                                                </a>\n" +
+                    "                                                <a href=\"#App-Store-Link\" style=\"display: inline-block;\" target=\"_blank\" class=\"app-store\">\n" +
+                    "                                                    <img alt=\"\" border=\"0\" src=\"http://email.aumfusion.com/vespro/img/app/app-store.png\" style=\"height:auto;margin:5px;width:100%;max-width:120px\" width=\"120\">\n" +
+                    "                                                </a>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"font-size:1px;line-height:1px\" height=\"30\">&nbsp;</td>\n" +
+                    "                                        </tr>\n" +
+                    "                                    </tbody>\n" +
+                    "                                </table>\n" +
+                    "                            </td>\n" +
+                    "                        </tr>\n" +
+                    "                        <tr>\n" +
+                    "                            <td style=\"line-height:1px;min-width:600px;background-color:#f9f9f9\" align=\"center\" valign=\"top\" class=\"emailBackground\">\n" +
+                    "                                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" class=\"tableCard\" style=\"max-width:600px\">\n" +
+                    "                                    <tbody>\n" +
+                    "                                        <tr>\n" +
+                    "                                            <td style=\"padding: 0px 20px 20px;\" align=\"center\" valign=\"top\" class=\"footerCopyRights\">\n" +
+                    "                                                <p class=\"text\" style=\"color:#bbb;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:20px;text-transform:none;text-align:center;padding:0;margin:0\">© 2024 FinnIT. All rights reserved.</p>\n" +
+                    "                                            </td>\n" +
+                    "                                        </tr>\n" +
+                    "                                    </tbody>\n" +
+                    "                                </table>\n" +
+                    "                            </td>\n" +
+                    "                        </tr>\n" +
+                    "                    </tbody>\n" +
+                    "                </table>\n" +
+                    "            </td>\n" +
+                    "        </tr>\n" +
+                    "    </tbody>\n" +
+                    "</table>";
+
             MimeMessage mimeMessage = new MimeMessage(session);
             mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(stringReceiverEmail));
-
-            mimeMessage.setSubject("Subject: Java App email");
-            mimeMessage.setText("Hello " + user.getName() + ",\n\nYour registration was successful. Welcome to the Programmer World!"
-            + "\n\nPlease click the link below to activate your account:\n"
-                    + SERVER_ADDRESS+"direct/?token=" + token
-                    + "\n\nThank you,\nJava App Team");
-
+            mimeMessage.setSubject("POS Website");
+            mimeMessage.setContent(htmlContent, "text/html; charset=utf-8");
             Transport.send(mimeMessage);
-
         } catch (MessagingException e) {
             e.printStackTrace();
         }

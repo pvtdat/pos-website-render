@@ -59,8 +59,8 @@ function RenewPassword() {
                 <div className="col-md-4"></div>
                 <div className="col-md-4">
                     <div className="card">
-                        <div className="card-header text-center text-white bg-secondary p-3">
-                            <h3>CHANGE YOUR PASSWORD</h3>
+                        <div className="card-header text-center text-main bg-main p-3">
+                            <h3 className="font-heading">CHANGE YOUR PASSWORD</h3>
                         </div>
                         <div className="card-body">
                             <form>
