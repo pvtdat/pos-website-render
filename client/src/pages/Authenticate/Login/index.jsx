@@ -89,7 +89,7 @@ export const Login = (props) => {
                 {/* Remind Password */}
                 <div id="formFooter" className="mt-3">
                     <a className="underlineHover" href="https://www.facebook.com/pvtd.2003/" target="_blank"
-                       rel="noopener noreferrer">Operated by DatPham.Com</a>
+                       rel="noopener noreferrer">Operated by FinnIT.Com</a>
                 </div>
             </div>
         </div>
