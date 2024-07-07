@@ -62,7 +62,7 @@ export const Login = (props) => {
                 {/* Login Form */}
                 <form>
                     <div className="input-container">
-                    <input type="text" id="username" className="fadeIn second" name="username" placeholder="username" />
+                    <input type="text" id="username" className="fadeIn second custom-input" name="username" placeholder="username" />
                     </div>
                     <div className="input-container">
                         <input
@@ -74,20 +74,20 @@ export const Login = (props) => {
                         />
                     </div>
                     <div className="fadeIn fourth form-input my-3" onClick={togglePasswordVisibility}>
-                        <input checked={showPassword} type="checkbox" id="showPassword" className="form-check-input" />
+                        <input checked={showPassword} type="checkbox" id="showPassword" className="form-check-input custom-input" />
                         <label className="form-check-label">Show Password</label>
                     </div>
 
                     
                     <input type="submit" id="login-btn" onClick={handleLogin} className="fadeIn fourth" value="Log In" disabled={login}/>
-                    {error && <div className="alert alert-success">
+                    {error && <div className="alert alert-success mx-3 mt-2">
                         <strong>Error!</strong> {error}
                     </div>}
                 </form>
                 {login && <LoadingImg />}                
 
                 {/* Remind Password */}
-                <div id="formFooter" className="mt-4">
+                <div id="formFooter" className="mt-3">
                     <a className="underlineHover" href="https://www.facebook.com/pvtd.2003/" target="_blank"
                        rel="noopener noreferrer">Operated by DatPham.Com</a>
                 </div>

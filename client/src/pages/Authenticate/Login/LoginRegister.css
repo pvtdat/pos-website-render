@@ -23,7 +23,10 @@ a {
   color: #cccccc;
 }
 
-
+.custom-input:focus,
+.custom-input:valid {
+  background-color: transparent;
+}
 
 /* STRUCTURE */
 .wrapper {
