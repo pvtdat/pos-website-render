@@ -1,8 +1,17 @@
-Deploy Spring Boot on Docker with Render (@WEB SERVER)
-Deploy ReactJS with Vercel (FRONT-END)
---------------------------------------------------------------------------------------------------
-Demo: https://pos-website-nine.vercel.app/l...
-Administrator: admin admin
-Salesperson: phamvantiendat2 phamvantiendat2
---------------------------------------------------------------------------------------------------
-The Spring Boot server on the Render (free) may run when accessing ReactJS on the Vercel, resulting in a delay of about 5 - 10 minutes, you can wait to have a good experience, and you can also go through this video demo.
+# POS Website Deployment
+
+This project demonstrates the deployment of a Spring Boot application using Docker on Render and a React.js frontend on Vercel.
+
+## Demo
+
+- **Live Demo**: [POS Website](https://pos-website-nine.vercel.app/)
+- **Administrator Credentials**: 
+  - Username: `admin`
+  - Password: `admin`
+- **Salesperson Credentials**:
+  - Username: `phamvantiendat2`
+  - Password: `phamvantiendat2`
+
+> **Note:** The Spring Boot server on Render (free tier) may take 5 - 10 minutes to start when accessed through the React.js frontend on Vercel. Please be patient during this period for an optimal experience.
+
+You can also view a [video demo](https://www.youtube.com/watch?v=uFSlhnQxEnc) of the application.
